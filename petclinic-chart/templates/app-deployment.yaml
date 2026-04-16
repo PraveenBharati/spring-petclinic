@@ -17,7 +17,7 @@ spec:
     spec:
       # Pull image from AWS ECR using the secret
       imagePullSecrets:
-        - name: ecr-secret
+        - name: {{ .Values.image.secret_name }}
       containers:
         - name: workload
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -31,9 +31,9 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: {{ .Values.db.password }}
             - name: SPRING_SQL_INIT_MODE
-              value: always
+              value: {{ .Values.db.SQL_INIT_MODE }}
             - name: SPRING_PROFILES_ACTIVE
-              value: postgres
+              value: {{ .Values.db.PROFILES_ACTIVE }}
             - name: SPRING_APPLICATION_JSON
               value: |
                 {
@@ -46,12 +46,12 @@ spec:
             httpGet:
               path: /actuator/health
               port: http
-              initialDelaySeconds: 60
+              initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: http
-              initialDelaySeconds: 30
+              initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           volumeMounts:
             - mountPath: /bindings/secret
               name: binding
