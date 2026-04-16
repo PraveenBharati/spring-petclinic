@@ -6,7 +6,7 @@ metadata:
   labels:
     app: petclinic
 spec:
-  replicas: 1
+  replicas: {{ .Values.count.replicas }}"
   selector:
     matchLabels:
       app: petclinic
@@ -20,16 +20,16 @@ spec:
         - name: ecr-secret
       containers:
         - name: workload
-          image: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui:14
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://demo-db:5432/petclinic
+              value: jdbc:postgresql://{{ .Values.db.host }}:{{ .Values.db.port }}/{{ .Values.db.name }}
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: create
             - name: SPRING_DATASOURCE_USERNAME
-              value: user
+              value: {{ .Values.db.username }}
             - name: SPRING_DATASOURCE_PASSWORD
-              value: pass
+              value: {{ .Values.db.password }}
             - name: SPRING_SQL_INIT_MODE
               value: always
             - name: SPRING_PROFILES_ACTIVE
