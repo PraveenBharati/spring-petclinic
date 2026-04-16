@@ -128,11 +128,12 @@ stage('Update K8s Manifest') {
                     passwordVariable: 'GIT_PASS'
                 )]) {
                     sh '''
-                        git config user.email "jenkins@devops.com"
-                        git config user.name "Jenkins CI"
-                        git add k8s/deployment.yaml
+                        git config user.email "praveenkbharati1999@gmail.com"
+                        git config user.name "PraveenBharati"
+                        git add k8s/petclinic.yml
                         git commit -m "CI: Update image tag to ${IMAGE_TAG} [skip ci]"
-                        git push https://${GIT_USER}:${GIT_PASS}@github.com/${GIT_USER}/student-management-system-main.git HEAD:main
+                        git push https://${GIT_USER}:${GIT_PASS}@github.com/${GIT_USER}/spring-petclinic.git HEAD:main
+                    
                     '''
                 }
             }
