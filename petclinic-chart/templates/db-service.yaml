@@ -4,6 +4,6 @@ metadata:
   name: demo-db
 spec:
   ports:
-    - port: 5432
+    - port: {{ .Values.db.port }}
   selector:
     app: demo-db
