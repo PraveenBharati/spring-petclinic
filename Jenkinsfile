@@ -117,10 +117,8 @@ stage('Update K8s Manifest') {
                 // This updates the petclinic.yaml with the new image tag
                 // ArgoCD will detect this change and auto-deploy
                 sh '''
-                   sed -i "s|image: .*amazonaws.*|image: ${IMAGE_NAME_UI}|g" \
-                      petclinic-chart/values.yaml
-                    sed -i "s|tag: ${IMAGE_TAG}-1 |image: ${IMAGE_TAG}|g" \
-                      petclinic-chart/values.yaml
+                   sed -i "s|image: .*|image: ${IMAGE_NAME_UI}|g" petclinic-chart/values.yaml
+                   sed -i "s|tag: .*|tag: \"${IMAGE_TAG}\"|g" petclinic-chart/values.yaml
                
                 '''
 
