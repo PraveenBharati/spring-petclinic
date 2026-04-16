@@ -15,7 +15,7 @@ db:
   SQL_INIT_MODE: always
   PROFILES_ACTIVE: postgres
   image: postgres
-  tag: "15"
+  tag_db: "15"
 
 livenessProbe:
   initialDelaySeconds: 60
