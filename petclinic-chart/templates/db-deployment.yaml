@@ -16,7 +16,7 @@ spec:
         app: demo-db
     spec:
       containers:
-        - image: postgres:15
+        - image: {{ .Values.db.image }}:{{ .Values.db.tag }}
           name: postgresql
           env:
             - name: POSTGRES_USER
@@ -35,7 +35,7 @@ spec:
                   name: demo-db
                   key: database
           ports:
-            - containerPort: 5432
+            - containerPort: {{ .Values.db.port }}
               name: postgresql
           livenessProbe:
             tcpSocket:
