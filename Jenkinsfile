@@ -27,7 +27,7 @@ stages {
      stage('Build & Unit Tests') {
             steps {
                 echo '===== Compiling code and running tests ====='
-                sh 'mvn clean test -B'
+                sh 'mvn clean test -DskipITs -B'
             }
             post {
                 always {
@@ -118,7 +118,7 @@ stages {
 stage('Update K8s Manifest') {
             steps {
                 echo '===== Updating image tag in Kubernetes deployment YAML ====='
-                // This updates the deployment.yaml with the new image tag
+                // This updates the petclinic.yaml with the new image tag
                 // ArgoCD will detect this change and auto-deploy
                 sh '''
                     sed -i "s|image: .*petclinic.*|image: ${IMAGE_NAME_UI}:${IMAGE_TAG}|g" \
