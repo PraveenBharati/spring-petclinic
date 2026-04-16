@@ -30,11 +30,6 @@ stages {
         sh 'mvn clean package -DskipTests -B'
         archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
         }
     stage('SonarQube Analysis') {
             steps {
