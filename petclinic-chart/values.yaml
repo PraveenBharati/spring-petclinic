@@ -11,3 +11,8 @@ db:
   name: petclinic
   host: demo-db
   port: 5432
+
+service_app:
+  port: 80
+  targetPort: 8080
+  type: NodePort 
