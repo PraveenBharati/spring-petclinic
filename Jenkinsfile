@@ -80,7 +80,7 @@ stages {
                       --exit-code 0 \
                       --severity HIGH,CRITICAL \
                       --format json \
-                      --output trivy-report.json \
+                      --output target/trivy-report.json \
                       ${IMAGE_NAME_UI}:${IMAGE_TAG}
                 '''
             }
