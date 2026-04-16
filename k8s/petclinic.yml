@@ -35,6 +35,8 @@ spec:
         - name: workload
           image: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui:14
           env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://demo-db:5432/petclinic
             - name: SPRING_PROFILES_ACTIVE
               value: postgres
             - name: SERVICE_BINDING_ROOT
