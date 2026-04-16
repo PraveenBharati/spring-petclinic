@@ -1,1 +1,10 @@
+image:
+  repository: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui
+  tag: "14"
 
+db:
+  username: user
+  password: pass
+  name: petclinic
+  host: demo-db
+  port: 5432
