@@ -1,5 +1,5 @@
-image:
-  repository: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui
+images:
+  image: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui
   tag: "14"
   secret_name: ecr-secret
 
