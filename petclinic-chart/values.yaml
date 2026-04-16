@@ -1,6 +1,7 @@
 image:
   repository: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui
   tag: "14"
+  secret_name: ecr-secret
 
 count:
    replicas: 2
@@ -11,6 +12,15 @@ db:
   name: petclinic
   host: demo-db
   port: 5432
+  SQL_INIT_MODE: always
+  PROFILES_ACTIVE: postgres
+
+livenessProbe:
+  initialDelaySeconds: 60
+
+readinessProbe:
+  initialDelaySeconds: 30
+
 
 service_app:
   port: 80
