@@ -37,6 +37,8 @@ spec:
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://demo-db:5432/petclinic
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: create
             - name: SPRING_DATASOURCE_USERNAME
               value: user
             - name: SPRING_DATASOURCE_PASSWORD
