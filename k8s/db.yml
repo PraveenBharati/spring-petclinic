@@ -44,6 +44,8 @@ spec:
         - image: postgres:18.3
           name: postgresql
           env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://demo-db:5432/petclinic
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
