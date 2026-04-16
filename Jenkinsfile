@@ -18,6 +18,12 @@ environment {
     }
 
 stages {
+     stage('Clean Workspace') {
+    steps {
+        echo '===== Cleaning workspace ====='
+        deleteDir()
+    }
+}
     stage('Checkout') {
             steps {
                 echo '===== Pulling source code from GitHub ====='
@@ -76,6 +82,7 @@ stages {
                 '''
                 // Save scan report as artifact
                 sh '''
+                mkdir -p target
                     trivy image \
                       --exit-code 0 \
                       --severity HIGH,CRITICAL \
