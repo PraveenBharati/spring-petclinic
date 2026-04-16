@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: workload
-          image: dsyer/petclinic
+          image: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui:14
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: postgres
