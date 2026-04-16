@@ -16,7 +16,7 @@ spec:
         app: demo-db
     spec:
       containers:
-        - image: {{ .Values.db.image }}:{{ .Values.db.tag }}
+        - image: {{ .Values.db.image }}:{{ .Values.db.tag_db }}
           name: postgresql
           env:
             - name: POSTGRES_USER
