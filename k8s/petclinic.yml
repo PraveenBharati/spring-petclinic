@@ -28,6 +28,9 @@ spec:
       labels:
         app: petclinic
     spec:
+      # Pull image from AWS ECR using the secret
+      imagePullSecrets:
+        - name: ecr-secret
       containers:
         - name: workload
           image: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui:14
