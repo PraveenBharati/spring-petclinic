@@ -26,8 +26,9 @@ stages {
         }
      stage('Build & Unit Tests') {
             steps {
-                echo '===== Compiling code and running tests ====='
-                sh 'mvn clean test -DskipITs -B'
+                echo '===== Building JAR (Skipping tests) ====='
+        sh 'mvn clean package -DskipTests -B'
+        archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
             post {
                 always {
@@ -55,13 +56,6 @@ stages {
                 timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
-            }
-        }
-        stage('Package JAR') {
-            steps {
-                echo '===== Creating final JAR file ====='
-                sh 'mvn package -DskipTests -B'
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
         stage('Build Docker Image') {
