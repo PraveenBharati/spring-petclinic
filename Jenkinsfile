@@ -4,7 +4,7 @@ environment {
         // AWS settings - set these in Jenkins credentials
         AWS_ACCOUNT_ID     = credentials('aws-account-id')
         AWS_REGION         = 'us-east-1'
-        ECR_REPO_NAME_UI      = 'petclinic-ui'
+        ECR_REPO_NAME_UI      = 'petclinic'
         ECR_REGISTRY       = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         IMAGE_NAME_UI       = "${ECR_REGISTRY}/${ECR_REPO_NAME_UI}"
         IMAGE_TAG          = "${BUILD_NUMBER}"
