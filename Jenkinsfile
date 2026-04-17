@@ -131,7 +131,7 @@ stages {
                     sh '''
                         git config user.email "praveenkbharati1999@gmail.com"
                         git config user.name "PraveenBharati"
-                        git petclinic-chart/values.yaml
+                        git add petclinic-chart/values.yaml
                         git commit -m "CI: Update image tag to ${IMAGE_TAG} [skip ci]"
                         git push https://${GIT_USER}:${GIT_PASS}@github.com/${GIT_USER}/spring-petclinic.git HEAD:main
                     
