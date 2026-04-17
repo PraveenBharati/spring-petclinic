@@ -111,47 +111,5 @@ stages {
                 }
             }
         }
-stage('Update K8s Manifest') {
-            steps {
-                echo '===== Updating image tag in Kubernetes deployment YAML ====='
-                // This updates the petclinic.yaml with the new image tag
-                // ArgoCD will detect this change and auto-deploy
-                sh '''
-                   sed -i "s|image: .*|image: ${IMAGE_NAME_UI}|g" petclinic-chart/values.yaml
-                   sed -i "s|tag: .*|tag: \"${IMAGE_TAG}\"|g" petclinic-chart/values.yaml
-               
-                '''
-
-                // Commit and push updated manifest back to GitHub
-                withCredentials([usernamePassword(
-                    credentialsId: 'github-credentials',
-                    usernameVariable: 'GIT_USER',
-                    passwordVariable: 'GIT_PASS'
-                )]) {
-                    sh '''
-                        git config user.email "praveenkbharati1999@gmail.com"
-                        git config user.name "PraveenBharati"
-                        git add k8s/petclinic.yml
-                        git commit -m "CI: Update image tag to ${IMAGE_TAG} [skip ci]"
-                        git push https://${GIT_USER}:${GIT_PASS}@github.com/${GIT_USER}/spring-petclinic.git HEAD:main
-                    
-                    '''
-                }
-            }
-        }
-
 }
-post {
-        success {
-            echo '===== Pipeline completed successfully! ArgoCD will now deploy. ====='
-        }
-        failure {
-            echo '===== Pipeline FAILED. Check the logs above. ====='
-        }
-        always {
-            // Clean up local Docker images to save disk space
-            sh 'docker rmi ${IMAGE_NAME_UI}:${IMAGE_TAG} || true'
-            sh 'docker rmi ${IMAGE_NAME_UI}:latest || true'
-        }
-    }
 }
