@@ -6,7 +6,8 @@ metadata:
   labels:
     app: petclinic
 spec:
-  replicas: {{ .Values.count.replicas }}"
+  replicas:
+    "{ .Values.count.replicas }": null
   selector:
     matchLabels:
       app: petclinic
@@ -15,25 +16,30 @@ spec:
       labels:
         app: petclinic
     spec:
-      # Pull image from AWS ECR using the secret
       imagePullSecrets:
-        - name: {{ .Values.image.secret_name }}
+        - name:
+            "{ .Values.image.secret_name }": null
       containers:
         - name: workload
           image: "{{ .Values.images.image }}:{{ .Values.image.tag }}"
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://{{ .Values.db.host }}:{{ .Values.db.port }}/{{ .Values.db.name }}
+              value: jdbc:postgresql://{{ .Values.db.host }}:{{ .Values.db.port }}/{{
+                .Values.db.name }}
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: create
             - name: SPRING_DATASOURCE_USERNAME
-              value: {{ .Values.db.username }}
+              value:
+                "{ .Values.db.username }": null
             - name: SPRING_DATASOURCE_PASSWORD
-              value: {{ .Values.db.password }}
+              value:
+                "{ .Values.db.password }": null
             - name: SPRING_SQL_INIT_MODE
-              value: {{ .Values.db.SQL_INIT_MODE }}
+              value:
+                "{ .Values.db.SQL_INIT_MODE }": null
             - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.db.PROFILES_ACTIVE }}
+              value:
+                "{ .Values.db.PROFILES_ACTIVE }": null
             - name: SPRING_APPLICATION_JSON
               value: |
                 {
@@ -46,12 +52,14 @@ spec:
             httpGet:
               path: /actuator/health
               port: http
-              initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+              initialDelaySeconds:
+                "{ .Values.livenessProbe.initialDelaySeconds }": null
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: http
-              initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+              initialDelaySeconds:
+                "{ .Values.readinessProbe.initialDelaySeconds }": null
           volumeMounts:
             - mountPath: /bindings/secret
               name: binding
