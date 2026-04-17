@@ -1,4 +1,3 @@
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -16,7 +15,7 @@ spec:
         app: demo-db
     spec:
       containers:
-        - image: {{ .Values.db.image }}:{{ .Values.db.tag_db }}
+        - image: "{{ .Values.db.image }}:{{ .Values.db.tag_db }}"
           name: postgresql
           env:
             - name: POSTGRES_USER
@@ -35,7 +34,8 @@ spec:
                   name: demo-db
                   key: database
           ports:
-            - containerPort: {{ .Values.db.port }}
+            - containerPort:
+                "{ .Values.db.port }": null
               name: postgresql
           livenessProbe:
             tcpSocket:
