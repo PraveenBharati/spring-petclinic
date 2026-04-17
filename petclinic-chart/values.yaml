@@ -1,6 +1,6 @@
 images:
-  image: 004754164629.dkr.ecr.us-east-1.amazonaws.com/petclinic-ui
-  tag: "14"
+  image: 700903221693.dkr.ecr.us-east-1.amazonaws.com/petclinic
+  tag: 4
   secret_name: ecr-secret
 
 count:
@@ -14,7 +14,7 @@ db:
   port: 5432
   SQL_INIT_MODE: always
   PROFILES_ACTIVE: postgres
-  image: postgres
+  image: 700903221693.dkr.ecr.us-east-1.amazonaws.com/petclinic
   tag_db: "15"
 
 livenessProbe:
