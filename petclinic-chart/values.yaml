@@ -12,7 +12,7 @@ db:
   name: petclinic
   host: demo-db
   port: 5432
-  SQL_INIT_MODE: always
+  SQL_INIT_MODE: never
   PROFILES_ACTIVE: postgres
   praveen: postgres
   tag_db: "15"
