@@ -6,6 +6,6 @@ metadata:
 spec:
   ports:
     - port:
-        "{ .Values.db.port }": null
+        "{ .Values.db.port }"
   selector:
     app: demo-db
