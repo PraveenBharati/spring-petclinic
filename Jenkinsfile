@@ -14,7 +14,7 @@ environment {
     }
     tools {
         maven 'Maven-3.9'
-        jdk   'JDK-17'
+        jdk   'JDK-21'
     }
 
 stages {
