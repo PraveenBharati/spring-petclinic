@@ -1,6 +1,6 @@
 images:
-  image: 889986388484.dkr.ecr.us-east-1.amazonaws.com/petclinic
-  tag: 8
+  image: 789051085078.dkr.ecr.us-east-1.amazonaws.com/petclinic
+  tag: 4
   secret_name: ecr-secret
 
 count:
