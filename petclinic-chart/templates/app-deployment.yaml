@@ -21,7 +21,7 @@ spec:
             "{ .Values.image.secret_name }": null
       containers:
         - name: workload
-          image: "{{ .Values.images.image }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.images.image }}:{{ .Values.images.tag }}"
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://{{ .Values.db.host }}:{{ .Values.db.port }}/{{
