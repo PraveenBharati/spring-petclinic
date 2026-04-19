@@ -14,7 +14,7 @@ db:
   port: 5432
   SQL_INIT_MODE: always
   PROFILES_ACTIVE: postgres
-  dbimage: postgres
+  praveen: postgres
   tag_db: "15"
 
 livenessProbe:
