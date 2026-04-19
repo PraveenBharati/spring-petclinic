@@ -29,16 +29,16 @@ spec:
               value: create
             - name: SPRING_DATASOURCE_USERNAME
               value:
-                "{ .Values.db.username }": null
+                "{ .Values.db.username }"
             - name: SPRING_DATASOURCE_PASSWORD
               value:
-                "{ .Values.db.password }": null
+                "{ .Values.db.password }"
             - name: SPRING_SQL_INIT_MODE
               value:
-                "{ .Values.db.SQL_INIT_MODE }": null
+                "{ .Values.db.SQL_INIT_MODE }"
             - name: SPRING_PROFILES_ACTIVE
               value:
-                "{ .Values.db.PROFILES_ACTIVE }": null
+                "{ .Values.db.PROFILES_ACTIVE }"
             - name: SPRING_APPLICATION_JSON
               value: |
                 {
