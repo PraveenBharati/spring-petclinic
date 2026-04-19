@@ -4,12 +4,9 @@ kind: Service
 metadata:
   name: petclinic
 spec:
-  type:
-    "{ .Values.service_app.type }"
+  type: {{ .Values.service_app.type }}
   ports:
-    - port:
-        "{ .Values.service_app.port }"
-      targetPort:
-        "{ .Values.service_app.targetPort }"
+    - port: {{ .Values.service_app.port }}
+      targetPort: {{ .Values.service_app.targetPort }}
   selector:
     app: petclinic
