@@ -21,7 +21,7 @@ livenessProbe:
   initialDelaySeconds: 60
 
 readinessProbe:
-  initialDelaySeconds: 30
+  initialDelaySeconds: 60
 
 
 service_app:
