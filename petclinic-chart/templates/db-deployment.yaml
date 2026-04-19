@@ -35,7 +35,7 @@ spec:
                   key: database
           ports:
             - containerPort:
-                "{ .Values.db.port }": null
+                {{ .Values.db.port }}
               name: postgresql
           livenessProbe:
             tcpSocket:
