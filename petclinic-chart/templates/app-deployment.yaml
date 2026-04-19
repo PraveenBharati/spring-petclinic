@@ -16,15 +16,13 @@ spec:
         app: petclinic
     spec:
       imagePullSecrets:
-        - name:
-            "{{ .Values.image.secret_name }}"
+        - name: {{ .Values.images.secret_name }}
       containers:
         - name: workload
           image: "{{ .Values.images.image }}:{{ .Values.images.tag }}"
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://{{ .Values.db.host }}:{{ .Values.db.port }}/{{
-                .Values.db.name }}
+              value: jdbc:postgresql://{{ .Values.db.host }}:{{ .Values.db.port }}/{{ .Values.db.name }}
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: create
             - name: SPRING_DATASOURCE_USERNAME
@@ -51,14 +49,12 @@ spec:
             httpGet:
               path: /actuator/health
               port: http
-              initialDelaySeconds:
-                "{ .Values.livenessProbe.initialDelaySeconds }": null
+              initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: http
-              initialDelaySeconds:
-                "{ .Values.readinessProbe.initialDelaySeconds }": null
+              initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           volumeMounts:
             - mountPath: /bindings/secret
               name: binding
